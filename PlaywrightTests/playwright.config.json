@@ -1,0 +1,6 @@
+{
+    "browser": "chromium",
+    "headless": true,
+    "baseURL": "https://example.com"
+  }
+  
