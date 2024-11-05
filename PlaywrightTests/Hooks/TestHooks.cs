@@ -38,7 +38,7 @@ public class TestHooks
     [AfterScenario]
     public async Task TearDown()
     {
-        if(test.Status == Status.Fail) 
+        if(_scenarioContext.TestError != null) 
         {
             await takeScreenshot();
         }
@@ -52,11 +52,15 @@ public class TestHooks
         extent.Flush();
     }
 
-    private static async Task takeScreenshot() 
+    private async Task takeScreenshot() 
     {
-        await Page.ScreenshotAsync(new()
-        {
-            Path = "screenshot.png",
-        });
+        var outputDirectory = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "test-output");
+        var screenshotPath = Path.Combine(outputDirectory, $"{_scenarioContext.ScenarioInfo.Title}_screenshot.png");
+        var screenshot = await Page.ScreenshotAsync(new()
+            {
+                Path = screenshotPath,
+                FullPage = true
+            });
+        test.Fail("Screenshot on failure:").AddScreenCaptureFromPath(screenshotPath);
     }
 }
