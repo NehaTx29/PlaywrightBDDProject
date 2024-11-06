@@ -1,3 +1,4 @@
+
 using Microsoft.Playwright;
 using TechTalk.SpecFlow;
 using AventStack.ExtentReports;
@@ -62,6 +63,8 @@ public class TestHooks
                 Path = screenshotPath,
                 FullPage = true
             });
-        test.Fail("Screenshot on failure:").AddScreenCaptureFromPath(screenshotPath);
+        test.Log(Status.Fail,"TEST CASE FAILED AT THIS TEST STEP") ;   
+        test.Log(Status.Info, "Screenshot of failure Step :", MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPath).Build());
+        //test.Fail("Screenshot on failure:").AddScreenCaptureFromPath(screenshotPath);
     }
 }
