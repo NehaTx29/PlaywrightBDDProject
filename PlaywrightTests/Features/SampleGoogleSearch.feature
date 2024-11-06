@@ -4,4 +4,4 @@ Feature: Google Sample Search
 	I want to be able to search for the keyword on the Google Search website
 
 Scenario: Google Search
-	Given I perform Google Search
+	Given I perform Google Search "Neha Test"

@@ -19,8 +19,7 @@ public class TestHooks
     [BeforeTestRun]
     public static void SetupReport()
     {
-        var outputDirectory = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "test-output");
-        var reportPath = Path.Combine(outputDirectory, "ExtentReport.html");
+        var reportPath = Path.Combine(Config.TestOutputFolder, "ExtentReport.html");
         var htmlReporter = new ExtentSparkReporter(reportPath);
         extent = new ExtentReports();
         extent.AttachReporter(htmlReporter);
@@ -54,8 +53,7 @@ public class TestHooks
 
     private async Task takeScreenshot() 
     {
-        var outputDirectory = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "test-output");
-        var screenshotPath = Path.Combine(outputDirectory, $"{_scenarioContext.ScenarioInfo.Title}_screenshot.png");
+        var screenshotPath = Path.Combine(Config.ScreenshotFolder, $"{_scenarioContext.ScenarioInfo.Title}_screenshot.png");
         var screenshot = await Page.ScreenshotAsync(new()
             {
                 Path = screenshotPath,

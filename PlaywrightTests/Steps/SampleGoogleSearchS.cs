@@ -14,11 +14,11 @@ public class SampleGoogleSearchS : BasePage
         googlePage = new GooglePage();
     }
      
-    [Given(@"I perform Google Search")]
-    public async Task IperformGoogleSearch()
+    [Given(@"I perform Google Search ""(.*)""")]
+    public async Task IperformGoogleSearch(String searchText)
     {
-        await Page.GotoAsync("https://www.google.com");
-        await googlePage.PerformSearch("Neha Test");
+        await Page.GotoAsync(Config.GoogleUrl);
+        await googlePage.PerformSearch(searchText);
         TestHooks.test.Pass("tested");
     }
 }
