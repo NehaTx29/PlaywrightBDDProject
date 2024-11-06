@@ -29,7 +29,10 @@ public class TestHooks
     public async Task Setup() 
     {
         var playwright = await Playwright.CreateAsync();
-        var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
+        var browserTypeProperty = playwright.GetType().GetProperty(Config.BrowserName, 
+            System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.IgnoreCase);
+        var browserType = browserTypeProperty.GetValue(playwright) as IBrowserType;
+        var browser = await browserType.LaunchAsync(new BrowserTypeLaunchOptions { Headless = Config.Headless });
         Page = await browser.NewPageAsync();
         test = extent.CreateTest(_scenarioContext.ScenarioInfo.Title);
     }
