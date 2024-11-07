@@ -7308,19 +7308,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Neha\\.nuget\\packages\\": {}
+    "C:\\Users\\Shobhit Kishore\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Neha\\Desktop\\Projects\\PlaywrightBDDProject\\PlaywrightTests\\PlaywrightTests.csproj",
+      "projectUniqueName": "E:\\Documents\\ProjectSrcCode\\PlaywrightDotNetCSharp\\PlaywrightBDDProject\\PlaywrightBDDProject\\PlaywrightTests\\PlaywrightTests.csproj",
       "projectName": "PlaywrightTests",
-      "projectPath": "C:\\Users\\Neha\\Desktop\\Projects\\PlaywrightBDDProject\\PlaywrightTests\\PlaywrightTests.csproj",
-      "packagesPath": "C:\\Users\\Neha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Neha\\Desktop\\Projects\\PlaywrightBDDProject\\PlaywrightTests\\obj\\",
+      "projectPath": "E:\\Documents\\ProjectSrcCode\\PlaywrightDotNetCSharp\\PlaywrightBDDProject\\PlaywrightBDDProject\\PlaywrightTests\\PlaywrightTests.csproj",
+      "packagesPath": "C:\\Users\\Shobhit Kishore\\.nuget\\packages\\",
+      "outputPath": "E:\\Documents\\ProjectSrcCode\\PlaywrightDotNetCSharp\\PlaywrightBDDProject\\PlaywrightBDDProject\\PlaywrightTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Neha\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Shobhit Kishore\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
