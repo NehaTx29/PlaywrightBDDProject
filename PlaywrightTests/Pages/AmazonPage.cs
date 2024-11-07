@@ -19,7 +19,7 @@ public class AmazonPage
 
     // Cart Page Locators
     private const string CartProductNameSelector = "//span[@class='a-truncate-cut']";
-    private const string CartProductPriceSelector = "//span[@class='a-size-medium a-color-base sc-price sc-white-space-nowrap sc-product-price a-text-bold']";
+    private const string CartProductPriceSelector = "span[class='a-truncate sc-grid-item-product-title a-size-base-plus'] span[class='a-truncate-cut']";
     private const string CartButtonSelector = "//a[@id='nav-cart']";
 
     public AmazonPage(IPage page)
@@ -30,7 +30,7 @@ public class AmazonPage
     // Homepage Actions
     public async Task NavigateToHomePage()
     {
-        await _page.GotoAsync("https://www.amazon.in/");
+        await _page.GotoAsync(Config.AmazonUrl);
     }
 
     public async Task SearchForProduct(string searchItemName)

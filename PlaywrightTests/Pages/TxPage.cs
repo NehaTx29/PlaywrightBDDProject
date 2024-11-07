@@ -12,6 +12,10 @@ public class TxPage : BasePage
     public ILocator AllDropDown => Page.Locator("//div[@title='All Category']/button[@id='dropdown-basic']");
     public ILocator AllDropDownOptions => Page.Locator("//div[contains(@class,'dropdown-menu show')]");
     public ILocator AllDropDownOptionsCount => Page.Locator("//div[contains(@class,'dropdown-menu show')]//a");
+    public ILocator FirstProductNameSelector => Page.Locator("//h6[contains(text(),'Jager-Smith PB-1000 Combo & Featherlite 2 Shuttle ')]");
+    public ILocator AddToWishlistButton => Page.Locator("//button[normalize-space()='Add To Wishlist']");
+    public ILocator YourWishlistButton => Page.Locator("//a[normalize-space()='Your Wishlist']");
+    public ILocator WishlistProductName => Page.Locator("//span[@id='spWishlistTitle']");
 
     public async Task clickLogin()
     {
@@ -25,5 +29,21 @@ public class TxPage : BasePage
         await Password.FillAsync(pass);
         await Login.ClickAsync();
         await HomePage.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Visible });
+    }
+
+    public async Task<string> GetFirstProductName()
+    {
+        return await FirstProductNameSelector.TextContentAsync();
+    }
+
+    public async Task ClickYourWishlist()
+    {
+        await SignInButton.ClickAsync();
+        await YourWishlistButton.ClickAsync();
+    }
+
+    public async Task<string> GetWishlistProductName()
+    {
+        return await WishlistProductName.TextContentAsync();
     }
 }
