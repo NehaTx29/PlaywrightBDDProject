@@ -16,6 +16,9 @@ public class TxPage : BasePage
     public ILocator AddToWishlistButton => Page.Locator("//button[normalize-space()='Add To Wishlist']");
     public ILocator YourWishlistButton => Page.Locator("//a[normalize-space()='Your Wishlist']");
     public ILocator WishlistProductName => Page.Locator("//span[@id='spWishlistTitle']");
+    public ILocator YourOrdersButton => Page.Locator("//a[normalize-space()='Your Orders']");
+    
+    public const string OrdersPageUrl = "http://3.94.149.173:9090/orders";
 
     public async Task clickLogin()
     {
@@ -46,4 +49,11 @@ public class TxPage : BasePage
     {
         return await WishlistProductName.TextContentAsync();
     }
+
+    public async Task ClickYourOrders()
+    {
+        await SignInButton.ClickAsync();
+        await YourOrdersButton.ClickAsync();
+    }
+
 }
