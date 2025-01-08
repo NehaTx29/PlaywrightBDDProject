@@ -24,4 +24,5 @@ public static class Config
     public static string BrowserName => Env.GetString("BROWSER_NAME");
     public static bool Headless => bool.Parse(Env.GetString("HEADLESS"));
     public static int Timeout => int.Parse(Env.GetString("TIMEOUT"));
+    public static string ApiAccessToken => Env.GetString("API_ACCESS_TOKEN");
 }
