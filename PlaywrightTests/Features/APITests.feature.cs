@@ -77,12 +77,19 @@ namespace PlaywrightTests.Features
         [NUnit.Framework.DescriptionAttribute("Retrieve information from the endpoint")]
         [NUnit.Framework.CategoryAttribute("APItests")]
         [NUnit.Framework.CategoryAttribute("1")]
-        public void RetrieveInformationFromTheEndpoint()
+        [NUnit.Framework.TestCaseAttribute("7636791", null)]
+        public void RetrieveInformationFromTheEndpoint(string iD, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "APItests",
                     "1"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("ID", iD);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Retrieve information from the endpoint", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
  this.ScenarioInitialize(scenarioInfo);
@@ -95,8 +102,8 @@ namespace PlaywrightTests.Features
             {
                 this.ScenarioStart();
 #line 5
-  testRunner.Given("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \"/public/v2/user" +
-                        "s/7623251\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given(string.Format("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \'/public/v2/user" +
+                            "s/\' and ID \'{0}\'", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
   testRunner.When("I send a GET request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -105,7 +112,7 @@ namespace PlaywrightTests.Features
   testRunner.Then("I should receive a response with status code 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 8
-  testRunner.Then("the JSON path \"id\" should have value \"7623251\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then(string.Format("the JSON path \"id\" should have value \"{0}\"", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -115,14 +122,24 @@ namespace PlaywrightTests.Features
         [NUnit.Framework.DescriptionAttribute("POST new data to the endpoint with authentication")]
         [NUnit.Framework.CategoryAttribute("APItests")]
         [NUnit.Framework.CategoryAttribute("2")]
-        public void POSTNewDataToTheEndpointWithAuthentication()
+        [NUnit.Framework.TestCaseAttribute("Jane Smith", "jane_Smith@test.com", "male", "active", null)]
+        public void POSTNewDataToTheEndpointWithAuthentication(string name, string email, string gender, string status, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "APItests",
                     "2"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Gender", gender);
+            argumentsOfScenario.Add("Status", status);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("POST new data to the endpoint with authentication", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 12
+#line 15
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -132,28 +149,28 @@ namespace PlaywrightTests.Features
             else
             {
                 this.ScenarioStart();
-#line 13
+#line 16
   testRunner.Given("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \"/public/v2/user" +
                         "s\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 14
-  testRunner.When("I send a POST request with access token in the header and \"Jane Smith\" \"jane.smit" +
-                        "h@exampletesting.com\" \"male\" \"active\" to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 15
-  testRunner.Then("I should receive a response with status code 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 16
-  testRunner.Then("the JSON path \"name\" should have value \"Jane Smith\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 17
-  testRunner.Then("the JSON path \"email\" should have value \"jane.smith@exampletesting.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.When(string.Format("I send a POST request with access token in the header and \"{0}\" \"{1}\" \"{2}\" \"{3}\"" +
+                            " to the endpoint", name, email, gender, status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
-  testRunner.Then("the JSON path \"gender\" should have value \"male\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("I should receive a response with status code 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 19
-  testRunner.Then("the JSON path \"status\" should have value \"active\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then(string.Format("the JSON path \"name\" should have value \"{0}\"", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 20
+  testRunner.Then(string.Format("the JSON path \"email\" should have value \"{0}\"", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 21
+  testRunner.Then(string.Format("the JSON path \"gender\" should have value \"{0}\"", gender), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 22
+  testRunner.Then(string.Format("the JSON path \"status\" should have value \"{0}\"", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -163,14 +180,25 @@ namespace PlaywrightTests.Features
         [NUnit.Framework.DescriptionAttribute("PUT new data to the endpoint")]
         [NUnit.Framework.CategoryAttribute("APItests")]
         [NUnit.Framework.CategoryAttribute("3")]
-        public void PUTNewDataToTheEndpoint()
+        [NUnit.Framework.TestCaseAttribute("7636791", "kamal", "kamal@example.com", "male", "active", null)]
+        public void PUTNewDataToTheEndpoint(string iD, string name, string email, string gender, string status, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "APItests",
                     "3"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("ID", iD);
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Gender", gender);
+            argumentsOfScenario.Add("Status", status);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PUT new data to the endpoint", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 23
+#line 29
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -180,28 +208,87 @@ namespace PlaywrightTests.Features
             else
             {
                 this.ScenarioStart();
-#line 24
-  testRunner.Given("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \"/public/v2/user" +
-                        "s/7623260\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 30
+  testRunner.Given(string.Format("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \'/public/v2/user" +
+                            "s/\' and ID \'{0}\'", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 25
-  testRunner.When("I send a PUT request with access token in the header and \"Alex\" \"alex.johnson@exa" +
-                        "mple.com\" \"male\" \"active\" to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
+  testRunner.When(string.Format("I send a PUT request with access token in the header and \"{0}\" \"{1}\" \"{2}\" \"{3}\" " +
+                            "to the endpoint", name, email, gender, status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
+#line 32
   testRunner.Then("I should receive a response with status code 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 27
-  testRunner.Then("the JSON path \"name\" should have value \"Alex\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
+  testRunner.Then(string.Format("the JSON path \"name\" should have value \"{0}\"", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 28
-  testRunner.Then("the JSON path \"email\" should have value \"alex.johnson@example.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 34
+  testRunner.Then(string.Format("the JSON path \"email\" should have value \"{0}\"", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 29
-  testRunner.Then("the JSON path \"gender\" should have value \"male\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 35
+  testRunner.Then(string.Format("the JSON path \"gender\" should have value \"{0}\"", gender), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 30
-  testRunner.Then("the JSON path \"status\" should have value \"active\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
+  testRunner.Then(string.Format("the JSON path \"status\" should have value \"{0}\"", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("PATCH new Name and Gender to the endpoint")]
+        [NUnit.Framework.CategoryAttribute("APItests")]
+        [NUnit.Framework.CategoryAttribute("4")]
+        [NUnit.Framework.TestCaseAttribute("7636791", "kane", "kamal@example.com", "female", "active", null)]
+        public void PATCHNewNameAndGenderToTheEndpoint(string iD, string name, string email, string gender, string status, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "APItests",
+                    "4"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("ID", iD);
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Gender", gender);
+            argumentsOfScenario.Add("Status", status);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PATCH new Name and Gender to the endpoint", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 42
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 43
+  testRunner.Given(string.Format("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \'/public/v2/user" +
+                            "s/\' and ID \'{0}\'", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 44
+  testRunner.When(string.Format("I send a PATCH request with access token in the header and \"{0}\" \"{1}\" to the end" +
+                            "point", name, gender), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 45
+  testRunner.Then("I should receive a response with status code 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 46
+  testRunner.Then(string.Format("the JSON path \"name\" should have value \"{0}\"", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 47
+  testRunner.Then(string.Format("the JSON path \"email\" should have value \"{0}\"", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 48
+  testRunner.Then(string.Format("the JSON path \"gender\" should have value \"{0}\"", gender), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 49
+  testRunner.Then(string.Format("the JSON path \"status\" should have value \"{0}\"", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -210,15 +297,22 @@ namespace PlaywrightTests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("DELETE data from the endpoint")]
         [NUnit.Framework.CategoryAttribute("APItests")]
-        [NUnit.Framework.CategoryAttribute("4")]
-        public void DELETEDataFromTheEndpoint()
+        [NUnit.Framework.CategoryAttribute("5")]
+        [NUnit.Framework.TestCaseAttribute("7632167", null)]
+        public void DELETEDataFromTheEndpoint(string iD, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "APItests",
-                    "4"};
+                    "5"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("ID", iD);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("DELETE data from the endpoint", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 34
+#line 55
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -228,15 +322,15 @@ namespace PlaywrightTests.Features
             else
             {
                 this.ScenarioStart();
-#line 35
-  testRunner.Given("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \"/public/v2/user" +
-                        "s/7623249\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 56
+  testRunner.Given(string.Format("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \'/public/v2/user" +
+                            "s/\' and ID \'{0}\'", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 36
-  testRunner.When("I send a DELETE request with access token in the header and \"sen_bhattathiri_amba" +
-                        "r@kris.example\" to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 57
+  testRunner.When(string.Format("I send a DELETE request with access token in the header and \"{0}\" to the endpoint" +
+                            "", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 37
+#line 58
   testRunner.Then("I should receive a response with status code 204", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -246,15 +340,25 @@ namespace PlaywrightTests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create new post to the endpoint")]
         [NUnit.Framework.CategoryAttribute("APItests")]
-        [NUnit.Framework.CategoryAttribute("5")]
-        public void CreateNewPostToTheEndpoint()
+        [NUnit.Framework.CategoryAttribute("6")]
+        [NUnit.Framework.TestCaseAttribute("7631899", "To create a new post for a user.", "New post for the given user is created and unquie ID is assigned for the new post" +
+            ".", null)]
+        public void CreateNewPostToTheEndpoint(string iD, string title, string body, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "APItests",
-                    "5"};
+                    "6"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("ID", iD);
+            argumentsOfScenario.Add("Title", title);
+            argumentsOfScenario.Add("Body", body);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create new post to the endpoint", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 41
+#line 64
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -264,22 +368,22 @@ namespace PlaywrightTests.Features
             else
             {
                 this.ScenarioStart();
-#line 42
-  testRunner.Given("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \"/public/v2/user" +
-                        "s/7625110/posts\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 65
+  testRunner.Given(string.Format("The API endpoint has baseURL \"https://gorest.co.in\" and basePath \"/public/v2/user" +
+                            "s/\" and ID \"{0}\" and endpoint \"/posts\"", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 43
-  testRunner.When(@"I send a CREATE POST request with access token in the header and ""Arto arceo tutis error custodia pecunia adaugeo totidem."" ""Quo curso candidus. Stabilis curriculum calcar. Voluptatum aegre defaeco. Sit fugiat cerno. Nemo sordeo socius. Reprehenderit facere coma. Depraedor solutio subito. Astrum alias dedico. Tepesco ter tremo. Cribro dolorem et. Sint vester corrigo. Aestivus decretum nemo. Dolore vitae cattus. Deorsum curto vel. Cotidie tollo usque."" to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 66
+  testRunner.When(string.Format("I send a CREATE POST request with access token in the header and \"{0}\" \"{1}\" to t" +
+                            "he endpoint", title, body), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 44
+#line 67
   testRunner.Then("I should receive a response with status code 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 45
-  testRunner.Then("the JSON path \"title\" should have value \"Arto arceo tutis error custodia pecunia " +
-                        "adaugeo totidem.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 68
+  testRunner.Then(string.Format("the JSON path \"title\" should have value \"{0}\"", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 46
-  testRunner.Then(@"the JSON path ""body"" should have value ""Quo curso candidus. Stabilis curriculum calcar. Voluptatum aegre defaeco. Sit fugiat cerno. Nemo sordeo socius. Reprehenderit facere coma. Depraedor solutio subito. Astrum alias dedico. Tepesco ter tremo. Cribro dolorem et. Sint vester corrigo. Aestivus decretum nemo. Dolore vitae cattus. Deorsum curto vel. Cotidie tollo usque.""", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 69
+  testRunner.Then(string.Format("the JSON path \"body\" should have value \"{0}\"", body), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -288,15 +392,24 @@ namespace PlaywrightTests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create new todo to the endpoint")]
         [NUnit.Framework.CategoryAttribute("APItests")]
-        [NUnit.Framework.CategoryAttribute("6")]
-        public void CreateNewTodoToTheEndpoint()
+        [NUnit.Framework.CategoryAttribute("7")]
+        [NUnit.Framework.TestCaseAttribute("7631899", "This is a new todo.", "completed", null)]
+        public void CreateNewTodoToTheEndpoint(string iD, string title, string status, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "APItests",
-                    "6"};
+                    "7"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("ID", iD);
+            argumentsOfScenario.Add("Title", title);
+            argumentsOfScenario.Add("Status", status);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create new todo to the endpoint", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 50
+#line 76
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -306,22 +419,22 @@ namespace PlaywrightTests.Features
             else
             {
                 this.ScenarioStart();
-#line 51
-  testRunner.Given("The API endpoint has baseURI \"https://gorest.co.in\" and basePath \"/public/v2/user" +
-                        "s/7623260/todos\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 77
+  testRunner.Given(string.Format("The API endpoint has baseURL \"https://gorest.co.in\" and basePath \"/public/v2/user" +
+                            "s/\" and ID \"{0}\" and endpoint \"/todos\"", iD), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 52
-  testRunner.When("I send a CREATE TODO request with access token in the header and \"This is a new t" +
-                        "odo.\" \"completed\" to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 78
+  testRunner.When(string.Format("I send a CREATE TODO request with access token in the header and \"{0}\" \"{1}\" to t" +
+                            "he endpoint", title, status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 53
+#line 79
   testRunner.Then("I should receive a response with status code 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 54
-  testRunner.Then("the JSON path \"title\" should have value \"This is a new todo.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 80
+  testRunner.Then(string.Format("the JSON path \"title\" should have value \"{0}\"", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 55
-  testRunner.Then("the JSON path \"status\" should have value \"completed\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 81
+  testRunner.Then(string.Format("the JSON path \"status\" should have value \"{0}\"", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

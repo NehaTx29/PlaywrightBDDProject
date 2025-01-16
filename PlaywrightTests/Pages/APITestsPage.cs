@@ -42,6 +42,15 @@ public class APITestsPage
         request.Headers.Add("Authorization", $"Bearer {Config.ApiAccessToken}");
         return await SendRequestAsync(request);
     }
+    public async Task<HttpResponseMessage> SendPatchRequestAsync(string baseUri, string basePath, string payload)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Patch, $"{baseUri}{basePath}")
+        {
+            Content = new StringContent(payload, Encoding.UTF8, "application/json")
+        };
+        request.Headers.Add("Authorization", $"Bearer {Config.ApiAccessToken}");
+        return await SendRequestAsync(request);
+    }
 
     public async Task<HttpResponseMessage> SendDeleteRequestAsync(string baseUri, string basePath)
     {

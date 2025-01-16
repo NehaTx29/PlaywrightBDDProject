@@ -15,12 +15,28 @@ public class APITestS
         _reusableMethods = new APITestsPage();
     }
 
+    [Given(@"The API endpoint has baseURI ""(.*)"" and basePath '(.*)' and ID '(.*)'")]
+    public void GivenTheAPIEndpointHasBaseURIAndBasePathAndID(string baseURL, string basePath, string ID)
+    {
+        // Use ScenarioContext directly without .Current
+        ScenarioContext.Current["BaseUri"] = baseURL;
+        ScenarioContext.Current["BasePath"] = basePath+ID;
+    }
+
     [Given(@"The API endpoint has baseURI ""(.*)"" and basePath ""(.*)""")]
     public void GivenTheAPIEndpointHavingBaseURIAndBasePath(string baseUri, string basePath)
     {
         // Use ScenarioContext directly without .Current
         ScenarioContext.Current["BaseUri"] = baseUri;
         ScenarioContext.Current["BasePath"] = basePath;
+    }
+
+    [Given(@"The API endpoint has baseURL ""(.*)"" and basePath ""(.*)"" and ID ""(.*)"" and endpoint ""(.*)""")]
+    public void GivenTheAPIEndpointHasBaseURLAndBasePathAndIDAndEndpoint(string baseURL, string basePath, string ID, string endPoint)
+    {
+        // Use ScenarioContext directly without .Current
+        ScenarioContext.Current["BaseUri"] = baseURL;
+        ScenarioContext.Current["BasePath"] = basePath + ID + endPoint;
     }
 
     [When(@"I send a GET request to the endpoint")]
@@ -66,8 +82,23 @@ public class APITestS
         _responseContent = await _reusableMethods.GetResponseContentAsync(_response);
     }
 
+    [When(@"I send a PATCH request with access token in the header and ""(.*)"" ""(.*)"" to the endpoint")]
+    public async Task WhenISendAPatchRequestWithAccessTokenInTheHeaderAndToTheEndpoint(string name, string gender)
+    {
+        string baseUri = ScenarioContext.Current["BaseUri"].ToString();
+        string basePath = ScenarioContext.Current["BasePath"].ToString();
+
+        var payload = $@"{{
+            ""name"": ""{name}"",
+            ""gender"": ""{gender}""
+        }}";
+
+        _response = await _reusableMethods.SendPatchRequestAsync(baseUri, basePath, payload);
+        _responseContent = await _reusableMethods.GetResponseContentAsync(_response);
+    }
+
     [When(@"I send a DELETE request with access token in the header and ""(.*)"" to the endpoint")]
-    public async Task WhenISendADeleteRequestWithAccessTokenInTheHeaderAndToTheEndpoint(string email)
+    public async Task WhenISendADeleteRequestWithAccessTokenInTheHeaderAndToTheEndpoint(string ID)
     {
         string baseUri = ScenarioContext.Current["BaseUri"].ToString();
         string basePath = ScenarioContext.Current["BasePath"].ToString();
